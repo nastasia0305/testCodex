@@ -1,0 +1,2 @@
+GET http://localhost:3001/artist/fb9a9770-95dd-43d4-a8e3-4ef24e861549 HTTP/1.1
+Content-Type: application/json
