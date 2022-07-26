@@ -19,5 +19,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    'new-cap': 'off'
   },
 };

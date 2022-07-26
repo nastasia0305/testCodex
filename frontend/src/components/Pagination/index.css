@@ -1,0 +1,21 @@
+.pagination {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.pagination li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.pagination li:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: green;
+  font-weight: bold;
+}

@@ -1,0 +1,7 @@
+POST http://localhost:3001/song HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Песня",
+  "artist_id": "82609466-c647-493d-852c-e52bcd33ab1a"
+}

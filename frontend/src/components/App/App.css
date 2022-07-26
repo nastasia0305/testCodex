@@ -1,0 +1,137 @@
+.App {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+header a:hover {
+  color: #407DFF;
+}
+
+.container {
+  display: grid;
+  gap: 10px;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+}
+
+.filter {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 150px 1fr 80px 100px;
+  align-items: center;
+  width: 800px;
+}
+
+select {
+  width: 150px;
+  height: 30px;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+input {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  height: 28px;
+}
+
+button {
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 30px;
+}
+
+button:hover {
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+table {
+  border: 1px solid grey;
+  border-radius: 8px;
+  width: 100%;
+}
+
+thead tr {
+  border-bottom: 1px dashed grey;
+}
+
+thead tr:hover {
+  background-color: #ffffff;
+}
+
+tr {
+  height: 30px;
+}
+
+tr:hover {
+  background-color: #ececec;
+}
+
+td {
+  text-align: center;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, auto);
+  margin-top: 10px;
+}
+
+form.form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  color: grey;
+  margin-bottom: 5px;
+}
+
+.row,
+.col {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.row--end {
+  align-items: flex-end;
+}

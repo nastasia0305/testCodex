@@ -1,0 +1,6 @@
+PUT http://localhost:3001/song/b9c15cec-54b4-4aa6-92b6-1479b7e56769 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Заяц, ну погоди!"
+}

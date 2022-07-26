@@ -16,10 +16,14 @@ router.get('/', async (req, res) => {
 
   if (where) {
     const { field, search } = JSON.parse(where);
+
+    let param = { [Op.iLike]: `%${search}%` };
+    if (field === 'createdAt') {
+      param = { [Op.eq]: new Date(search).toISOString() };
+    }
+
     params.where = {
-      [field]: {
-        [Op.iLike]: `%${search}%`,
-      },
+      [field]: param,
     };
   }
 
@@ -43,28 +47,47 @@ router.get('/', async (req, res) => {
   result.total = count;
   result.data = rows;
 
-  console.log('> find', result);
-
   res.status(200).json(result);
 });
 
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await Artist.findOne({ where: { id } });
+    const data = await Artist.findOne({
+      where: { id },
+      include: [{
+        model: Song,
+        as: 'Songs',
+        attributes: ['id', 'title'],
+      }],
+    });
+    console.log('> get data', data.toJSON());
     res.status(200).json(data.toJSON());
   } catch (error) {
     res.status(404).json(error);
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const { fullname, description } = req.body;
+    const blacklist = [
+      'лиза монеточка',
+      'монеточка',
+      'лиза монета',
+      'елизавета андреевна гырдымова',
+      'monetochka',
+      'monetochkaliska',
+    ];
+
+    if (blacklist.map((item) => item.toLowerCase()).includes(fullname.toLowerCase())) {
+      throw new Error('Нельзя добавлять артиста');
+    }
+
     const data = await Artist.create({ fullname, description }, { raw: true });
-    res.status(200).json(data.toJSON());
+    return res.status(200).json(data.toJSON());
   } catch (error) {
-    res.status(500).json({ error });
+    return res.status(400).send({ error: error.message });
   }
 });
 
@@ -86,7 +109,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    // await Songs.destroy({ where: { artist_id: id } });
+    await Song.destroy({ where: { artist_id: id } });
     await Artist.destroy({ where: { id } });
     res.status(200).json({ message: 'Запись удалена.' });
   } catch (error) {
